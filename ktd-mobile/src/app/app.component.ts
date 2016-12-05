@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class Killthedj {
   rootPage = HomePage;
 
   constructor(platform: Platform) {
