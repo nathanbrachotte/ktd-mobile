@@ -14,3 +14,23 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+//Change the colors of the content part
+.content
+{
+  background: color($colors, primary);
+  color: color($colors, secondary);
+}
+
+//Change the colors of the header
+.toolbar-background-md, .toolbar-background-ios
+{
+  background: color($colors, secondary);
+  color: color($colors, primary);
+}
+
+a
+{
+  color: color($colors, light);
+}
+
