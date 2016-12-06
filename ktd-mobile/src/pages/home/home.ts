@@ -25,13 +25,13 @@ export class HomePage {
        // this.posts = data.data.children;
       //});
 
-    //this.http.get('http://localhost:6680/killthedj/').map(res => res.json()).subscribe(data => {
-    //  this.posts = data.data;
-    //  console.log(this.posts);
-   // });
+    this.http.get('http://localhost:6680/killthedj/session').map(res => res.json()).subscribe(data => {
+      this.posts = data.active;
+      console.log(this.posts);
+    });
 
-    this.http.get('http://localhost:6680/killthedj/')
-      .subscribe(testReadme => this.post = testReadme.text());
+    //this.http.get('http://localhost:6680/killthedj/')
+     // .subscribe(testReadme => this.post = testReadme.text());
   }
 
   goUsers(){

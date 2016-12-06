@@ -2,7 +2,12 @@
   "name": "ktd-mobile",
   "app_id": "b67385bd",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://api.steampowered.com"
+    }
   ]
 }
 
