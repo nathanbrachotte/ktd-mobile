@@ -24,6 +24,10 @@ export class HomePage {
         this.posts = data.data.children;
       });
 
+    //this.http.get('http://localhost:6680/killthedj/').map(res => res.json()).subscribe(data => {
+    //  this.posts = data.data.children;
+    //});
+
   }
 
   changePage(){

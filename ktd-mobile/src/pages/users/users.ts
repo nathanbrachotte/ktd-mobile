@@ -13,9 +13,12 @@ export class UsersPage {
   items: Array<{title: string, note: string, icon: string}>;
 
   constructor(public navCtrl: NavController) {
+
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
       'american-football', 'boat', 'bluetooth', 'build'];
+
     this.items = [];
+
     for(let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,
