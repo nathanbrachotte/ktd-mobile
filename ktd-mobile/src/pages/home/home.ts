@@ -32,11 +32,16 @@ export class HomePage {
 
     this.http.get('http://localhost:6680/killthedj/')
       .subscribe(testReadme => this.post = testReadme.text());
-
-
   }
 
-  changePage(){
+  goUsers(){
     this.navCtrl.push(UsersPage);
   }
+  goAdd(){
+    this.navCtrl.push(UsersPage);
+  }
+  goSettings(){
+    this.navCtrl.push(UsersPage);
+  }
+
 }
