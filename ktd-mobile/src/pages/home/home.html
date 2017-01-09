@@ -24,7 +24,11 @@
 
   <br>
 
-  <button (click)="goUsers()">Coucou</button>
+  <button (click)="goUsers()">Coucou1</button>
   <button (click)="goAdd()">Coucou2</button>
-  <button ion-item (click)="openPage(MenuPage)">GO TO HOME</button>
+  <button ion-item (click)="openPage(MenuPage)">
+    Login
+  </button>
+
+  <button [navPush]="menuPage">Go To Menu</button>
 </ion-content>

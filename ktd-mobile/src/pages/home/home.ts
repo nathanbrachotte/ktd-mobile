@@ -4,6 +4,8 @@ import { NavController } from 'ionic-angular';
 
 //TEST GOING TO OTHER PAGE
 import { UsersPage } from '../users/users';
+import { MenuPage } from '../menu/menu';
+
 //
 //HTTP PART
 import { Http } from '@angular/http';
@@ -16,33 +18,26 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
 
+  menuPage = MenuPage;
   posts: any;
   post: string;
 
   constructor(public navCtrl: NavController, public http: Http) {
-
-    //this.http.get('https://www.reddit.com/r/gifs/new/.json?limit=10').map(res => res.json()).subscribe(data => {
-    // this.posts = data.data.children;
-    //});
-
     this.http.get('http://localhost:6680/killthedj/session').map(res => res.json()).subscribe(data => {
       this.posts = data.active;
       console.log(this.posts);
     });
-
-    //this.http.get('http://localhost:6680/killthedj/')
-    // .subscribe(testReadme => this.post = testReadme.text());
   }
 
   goUsers() {
-    this.navCtrl.push(UsersPage);
+    this.navCtrl.pop(UsersPage);
   }
 
   goAdd() {
     this.navCtrl.push(UsersPage);
   }
 
-  //goSettings(){
-  // this.navCtrl.push(UsersPage);
-  //}
+  goSettings(){
+    this.navCtrl.push(MenuPage);
+  }
 }

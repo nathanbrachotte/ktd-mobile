@@ -16,5 +16,11 @@
     </ion-list>
   -->
 
-  Session created : {{posts}}
+
+  <ion-list>
+    <p *ngFor="let i of items">
+      {{i.title}} , {{i.icon}}, {{i.note}}
+    </p>
+  </ion-list>
+
 </ion-content>

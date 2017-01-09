@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
+import { MenuPage } from '../pages/menu/menu';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class MyApp {
       Splashscreen.hide();
       this.pages = [
         { title: 'Hello Ionic', component: HomePage },
-        { title: 'My First List', component: UsersPage }
+        { title: 'My First List', component: UsersPage },
+        { title: 'Menu', component: MenuPage }
       ];
     });
   }
