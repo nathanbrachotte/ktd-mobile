@@ -21,9 +21,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public http: Http) {
 
-      //this.http.get('https://www.reddit.com/r/gifs/new/.json?limit=10').map(res => res.json()).subscribe(data => {
-       // this.posts = data.data.children;
-      //});
+    //this.http.get('https://www.reddit.com/r/gifs/new/.json?limit=10').map(res => res.json()).subscribe(data => {
+    // this.posts = data.data.children;
+    //});
 
     this.http.get('http://localhost:6680/killthedj/session').map(res => res.json()).subscribe(data => {
       this.posts = data.active;
@@ -31,17 +31,18 @@ export class HomePage {
     });
 
     //this.http.get('http://localhost:6680/killthedj/')
-     // .subscribe(testReadme => this.post = testReadme.text());
+    // .subscribe(testReadme => this.post = testReadme.text());
   }
 
-  goUsers(){
-    this.navCtrl.push(UsersPage);
-  }
-  goAdd(){
-    this.navCtrl.push(UsersPage);
-  }
-  goSettings(){
+  goUsers() {
     this.navCtrl.push(UsersPage);
   }
 
+  goAdd() {
+    this.navCtrl.push(UsersPage);
+  }
+
+  //goSettings(){
+  // this.navCtrl.push(UsersPage);
+  //}
 }
