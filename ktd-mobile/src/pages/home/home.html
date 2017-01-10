@@ -23,6 +23,20 @@
   Session created : {{posts}}
 
   <br>
+  <br>
+  <br>
+
+
+  <ion-list>
+    <p *ngFor="let i of answer">
+      {{i.name}} , {{i.length}}
+    </p>
+  </ion-list>
+
+  <br>
+  <br>
+  <br>
+  <br>
 
   <button (click)="goUsers()">Coucou1</button>
   <button (click)="goAdd()">Coucou2</button>
