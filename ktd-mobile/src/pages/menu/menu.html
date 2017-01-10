@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      MenuPage
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,9 +18,10 @@
 
 
   <ion-list>
-    <p *ngFor="let i of items">
-      {{i.title}} , {{i.icon}}, {{i.note}}
+    <p *ngFor="let i of answer">
+      {{i.name}} , {{i.length}}
     </p>
   </ion-list>
+
 
 </ion-content>

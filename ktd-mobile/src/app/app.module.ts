@@ -5,13 +5,20 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UsersPage } from '../pages/users/users';
 import { MenuPage } from '../pages/menu/menu';
+import { PresetPage } from '../pages/preset/preset';
+import { AddPage } from '../pages/add/add';
+import { ServicePage } from '../pages/service/service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     UsersPage,
-    MenuPage
+    MenuPage,
+    PresetPage,
+    AddPage,
+    ServicePage
+
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -21,7 +28,10 @@ import { MenuPage } from '../pages/menu/menu';
     MyApp,
     HomePage,
     UsersPage,
-    MenuPage
+    MenuPage,
+    PresetPage,
+    AddPage,
+    ServicePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

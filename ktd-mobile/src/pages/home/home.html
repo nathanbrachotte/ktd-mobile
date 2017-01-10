@@ -1,48 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      HomePage
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-
-<!--
-  <ion-list>
-    <ion-item *ngFor="let post of posts">
-
-    </ion-item>
-  </ion-list>
--->
-
   Session created : {{posts}}
 
-  <br>
-  <br>
-  <br>
-
-
-  <ion-list>
-    <p *ngFor="let i of answer">
-      {{i.name}} , {{i.length}}
-    </p>
-  </ion-list>
+  <div *ngIf="posts == false">
+    La session n'est pas active
+  </div>
+  <div *ngIf="posts == true">
+    La session n'est pas active
+  </div>
 
   <br>
-  <br>
-  <br>
-  <br>
-
-  <button (click)="goUsers()">Coucou1</button>
-  <button (click)="goAdd()">Coucou2</button>
-  <button ion-item (click)="openPage(menuPage)">
-    Login
-  </button>
-
-  <button [navPush]="menuPage">Go To Menu</button>
+  <button (click)="goPreset()">Go to preset</button>
+  <button (click)="goMenu()">Go to menu</button>
 </ion-content>

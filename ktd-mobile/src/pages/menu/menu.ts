@@ -16,23 +16,59 @@ import 'rxjs/add/operator/map';
 })
 export class MenuPage {
 
-  selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
+  answer: any;
+  link : string;
+  data : any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public http: Http)
+  {
 
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-      'american-football', 'boat', 'bluetooth', 'build'];
 
-    this.items = [];
-
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+    this.submit();
+    this.upvote();
   }
+
+
+
+  submit() {
+
+    this.link = 'http://localhost:6680/killthedj/searches';
+    //this.data = JSON.stringify({username: this.data.username});
+    this.data = JSON.stringify({
+      "query": {
+        "track_name": [
+          "Une ba"
+        ]
+      }
+    });
+
+    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+      this.answer = data[0].tracks;
+    }, error => {
+      console.log("Oooops!");
+    });
+  }
+
+
+  upvote() {
+
+    this.link = 'http://localhost:6680/killthedj/searches';
+    //this.data = JSON.stringify({username: this.data.username});
+    this.data = JSON.stringify({
+      "query": {
+        "track_name": [
+          "Un"
+        ]
+      }
+    });
+
+    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+      this.answer = data[0].tracks;
+    }, error => {
+      console.log("Oooops!");
+    });
+  }
+
 }
