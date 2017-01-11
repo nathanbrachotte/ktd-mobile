@@ -17,8 +17,13 @@
   -->
 
 
+  <ion-list>
+    <p *ngFor="let i of answer">
+      {{i.name}} , {{i.length}}
+    </p>
+  </ion-list>
 
-  <button (click)="goAdd()">Go to Menu</button>
-  <button (click)="goUsers()">Go to Menu</button>
+  <button (click)="goAdd()">Go to Add</button>
+  <button (click)="goUsers()">Go to Users</button>
 
 </ion-content>
