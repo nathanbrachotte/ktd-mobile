@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
 
 //TEST GOING TO OTHER PAGE
@@ -32,7 +31,7 @@ export class MenuPage {
   }
 
   goAdd() {
-    this.navCtrl.push(AddPage);
+    this.navCtrl.setRoot(AddPage);
   }
   goUsers() {
     this.navCtrl.push(UsersPage);

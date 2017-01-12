@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-//HTTP
+//HTTP PART
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -16,9 +16,12 @@ import 'rxjs/add/operator/map';
   templateUrl: 'add.html'
 })
 export class AddPage {
+  icons: string[];
+  items: Array<{title: string, note: string, icon: string}>;
   answer: any;
-  data : any;
   link : string;
+  data : any;
+  test : any;
 
   constructor(public navCtrl: NavController,  public http: Http) {
     this.submit();
