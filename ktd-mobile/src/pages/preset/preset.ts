@@ -3,6 +3,10 @@ import { NavController } from 'ionic-angular';
 import {FormBuilder, Validators} from "@angular/forms";
 import { ServicePage } from '../service/service';
 
+//HTTP PART
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 /*
   Generated class for the Preset page.
 
@@ -15,15 +19,39 @@ import { ServicePage } from '../service/service';
 })
 export class PresetPage {
 
-  public registrationForm: any;
-  constructor(public navCtrl: NavController, public _form:FormBuilder)
+  public presetForm: any;
+  public  duration: number;
+  public  nbPeople: number;
+  private data: any;
+  private link: string;
+  private answer: any;
+
+  constructor(public navCtrl: NavController, public _form:FormBuilder, public http: Http)
   {
-    this.registrationForm = this._form.group({
+    this.duration= 50;
+    this.nbPeople= 20;
+    this.presetForm = this._form.group({
+      "session_name":["", Validators.required],
       "duration":["", Validators.required],
-      "timebetween":["", Validators.required],
-      "peoplemax":["", Validators.required],
-      "votepersong":["", Validators.required],
+      "nb_people":["", Validators.required],
+      "admin_username": ["Bob", Validators.required],
     })
+  }
+
+  sendForm() {
+    console.log(this.presetForm.value);
+    this.link = 'http://localhost:6680/killthedj/session';
+    //this.data = JSON.stringify({username: this.data.username});
+    this.data = JSON.stringify(this.presetForm.value);
+
+    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+      this.answer = data;
+      this.goService()
+    }, error => {
+      console.log("Oooops!");
+      location.reload()
+    });
+
   }
 
   goService() {

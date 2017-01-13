@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -9,17 +8,37 @@
 
 
 <ion-content padding>
-<!--  <form [ngFormModel]="registrationForm" (submit)="submit();">
-    <ion-list>
-      <ion-item>
-        <ion-label>
-          Duration
-        </ion-label>
-        <ion-input type="text" ngControl="duration" name="time"></ion-input>
-      </ion-item>
-    </ion-list>
-    <button full favorite [disabled]="!registrationForm.valid">Launch party !!!</button>
+
+  <form [formGroup]="presetForm" (ngSubmit)="presetForm.valid && sendForm()" novalidate>
+    <ion-item>
+      <ion-label color="primary" floating>
+        Party Name
+      </ion-label>
+      <ion-input value="My amazing party!" formControlName="session_name" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label left="true" color="primary">
+        Duration: {{ duration }} min
+      </ion-label>
+      <ion-range min="20" max="1000" [(ngModel)]="duration" formControlName="duration" color="secondary">
+        <ion-label range-left>20</ion-label>
+        <ion-label range-right>1000</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label left="true" color="primary">
+        Max people: {{ nbPeople }}
+      </ion-label>
+      <ion-range value="20" min="2" max="1000" [(ngModel)]="nbPeople" formControlName="nb_people" color="secondary">
+        <ion-label range-left>2</ion-label>
+        <ion-label range-right>1000</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <button ion-button type="submit" block>Launch Party!!
+    </button>
   </form>
--->
+
   <button (click)="goService()">Go to Service</button>
 </ion-content>
