@@ -31,7 +31,7 @@ export class PresetPage {
     this.duration= 50;
     this.nbPeople= 20;
     this.presetForm = this._form.group({
-      "session_name":["", Validators.required],
+      "session_name":["My amazing party!!", Validators.required],
       "duration":["", Validators.required],
       "nb_people":["", Validators.required],
       "admin_username": ["Bob", Validators.required],
