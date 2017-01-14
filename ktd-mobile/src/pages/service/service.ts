@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { MenuPage } from '../menu/menu';
 
 /*
@@ -14,9 +14,19 @@ import { MenuPage } from '../menu/menu';
 })
 export class ServicePage {
 
-  constructor(public navCtrl: NavController) {}
+  username : any;
 
-  goMenu() {
-    this.navCtrl.setRoot(MenuPage);
+  constructor(public navCtrl: NavController,public params:NavParams)
+  {
+    this.username = params.get("name");
+    console.log(this.username);
+
+  }
+
+  goMenu(name_user:any)
+  {
+    this.navCtrl.setRoot(MenuPage,{
+      name: name_user
+    });
   }
 }

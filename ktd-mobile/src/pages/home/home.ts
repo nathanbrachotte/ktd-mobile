@@ -18,7 +18,7 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
   active_session: any;
-  presetForm: any;
+  startForm: any;
   duration: number;
   nbPeople: number;
   data: any;
@@ -35,44 +35,50 @@ export class HomePage {
 
     this.duration= 50;
     this.nbPeople= 20;
-    this.presetForm = this._form.group({
-      "session_name":["My amazing party!!", Validators.required],
+    this.startForm = this._form.group({
+      "username":["Nathan", Validators.required],
     })
 
   }
   sendForm() {
-    console.log(this.presetForm.value.session_name);
-    this.link = 'http://localhost:6680/killthedj/session/users';
-    //this.data = JSON.stringify({username: this.data.username});
-    this.data = JSON.stringify(
-      {
-        "username": this.presetForm.value.session_name
-      });
-
-    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-      this.answer = data;
-    }, error => {
-      console.log("Oooops!");
-    });
+    console.log(this.startForm.value.username);
     if(this.active_session)
     {
-      this.goMenu();
+      //si la sessionnest active, on ajoute l'utilisateur
+      this.link = 'http://localhost:6680/killthedj/session/users';
+      //this.data = JSON.stringify({username: this.data.username});
+      this.data = JSON.stringify(
+        {
+          "username": this.startForm.value.username
+        });
+
+      this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+        this.answer = data;
+      }, error => {
+        console.log("User creation failed!");
+      });
+      this.goMenu(this.startForm.value.username);
     }
+    //Sinon il est ajouté en même temps que les settings de la session
     else
     {
-      this.goPreset();
+      this.goPreset(this.startForm.value.username);
     }
   }
 
 
-  goPreset()
+  goPreset(name_user:any)
   {
-    this.navCtrl.push(PresetPage);
+    this.navCtrl.push(PresetPage,{
+      name: name_user
+    });
   }
 
-  goMenu()
+  goMenu(name_user:any)
   {
-    this.navCtrl.setRoot(MenuPage);
+    this.navCtrl.setRoot(MenuPage,{
+      name: name_user
+    });
   }
 
   switchActive()

@@ -13,14 +13,13 @@
   <br>
   <br>
 
-  <form [formGroup]="presetForm" (ngSubmit)="presetForm.valid && sendForm()" novalidate>
+  <form [formGroup]="startForm" (ngSubmit)="startForm.valid && sendForm()" novalidate>
     <ion-item>
       <ion-label color="primary" floating>
         Your name
       </ion-label>
-      <ion-input formControlName="session_name"></ion-input>
+      <ion-input formControlName="username"></ion-input>
     </ion-item>
-<!--    <button ion-button type="submit" block>Launch Party</button>-->
     <div *ngIf="posts">
       <button ion-button type="submit">Go to menu</button>
       La session est active

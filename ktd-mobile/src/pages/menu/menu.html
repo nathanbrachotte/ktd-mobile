@@ -14,9 +14,11 @@
     </p>
   </ion-list>
 
+  Bonjour {{username}}
+
+
   <button (click)="goAdd()">Go to Add</button>
-  <button (click)="goUsers()">Go to Users</button>
+  <button (click)="goUsers(username)">Go to Users</button>
 
   <button (click)="displaySongs()">Display songs</button>
-
 </ion-content>

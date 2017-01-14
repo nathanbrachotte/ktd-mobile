@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, Validators} from "@angular/forms";
 import { ServicePage } from '../service/service';
 
@@ -25,16 +25,19 @@ export class PresetPage {
   private data: any;
   private link: string;
   private answer: any;
+  private username: any;
 
-  constructor(public navCtrl: NavController, public _form:FormBuilder, public http: Http)
+  constructor(public navCtrl: NavController, public _form:FormBuilder, public http: Http,public params:NavParams)
   {
+    this.username = params.get("name");
+    console.log(this.username);
     this.duration= 50;
     this.nbPeople= 20;
     this.presetForm = this._form.group({
       "session_name":["My amazing party!!", Validators.required],
       "duration":["", Validators.required],
       "nb_people":["", Validators.required],
-      "admin_username": ["Bob", Validators.required],
+      "admin_username": [this.username, Validators.required],
     })
   }
 
@@ -46,7 +49,7 @@ export class PresetPage {
 
     this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
       this.answer = data;
-      this.goService()
+      this.goService(this.username);
     }, error => {
       console.log("Oooops!");
       location.reload()
@@ -54,8 +57,10 @@ export class PresetPage {
 
   }
 
-  goService() {
-    this.navCtrl.push(ServicePage);
+  goService(name_user:any)
+  {
+    this.navCtrl.push(ServicePage,{
+      name: name_user
+    });
   }
-
 }

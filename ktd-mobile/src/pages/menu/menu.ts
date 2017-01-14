@@ -22,21 +22,25 @@ export class MenuPage {
   link : string;
   data : any;
   songsSelected : any;
-  ex : any;
+  username : any;
 
 
-  constructor(public navCtrl: NavController, public http: Http)
+  constructor(public navCtrl: NavController, public http: Http,public params:NavParams)
   {
     //this.upvote();
+    this.username = params.get("name");
+    console.log(this.username);
   }
 
   goAdd() {
     this.navCtrl.push(AddPage);
   }
-  goUsers() {
-    this.navCtrl.push(UsersPage);
+  goUsers(name_user:any)
+  {
+    this.navCtrl.push(UsersPage,{
+      name: name_user
+    });
   }
-
 
   displaySongs()
   {
@@ -44,8 +48,8 @@ export class MenuPage {
       this.songsSelected = data;
       console.log(this.songsSelected);
     });
-
   }
+
 
   upvote() {
 
