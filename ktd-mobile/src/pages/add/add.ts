@@ -57,8 +57,11 @@ export class AddPage {
     this.test = uri;
 
     this.link = 'http://localhost:6680/killthedj/tracklist/tracks';
-    //this.data = JSON.stringify({username: this.data.username});
-    this.data = uri.toString();
+
+    this.data = JSON.stringify(
+      {
+        "uri": uri
+      });
 
     this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
       this.answer = data[0].tracks;
