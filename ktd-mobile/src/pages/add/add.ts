@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 //HTTP PART
 import { Http } from '@angular/http';
@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
   selector: 'page-add',
   templateUrl: 'add.html'
 })
+
 export class AddPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
@@ -24,24 +25,46 @@ export class AddPage {
   test : any;
 
   constructor(public navCtrl: NavController,  public http: Http) {
-    this.submit();
   }
 
-  submit() {
-    this.link = 'http://localhost:6680/killthedj/searches';
+  search(ev: any) {
+    this.answer = null;
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    if (val && val.trim() != '')
+    {
+      this.link = 'http://localhost:6680/killthedj/searches';
+      //this.data = JSON.stringify({username: this.data.username});
+      this.data = JSON.stringify({
+        "query": {
+          "track_name": [
+            val
+          ]
+        }
+      });
+
+      this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+        this.answer = data[0].tracks;
+      }, error => {
+        console.log("Search failed");
+      });
+    }
+  }
+
+  submit(name:any, uri:any)
+  {
+    this.test = uri;
+
+    this.link = 'http://localhost:6680/killthedj/tracklist/tracks';
     //this.data = JSON.stringify({username: this.data.username});
-    this.data = JSON.stringify({
-      "query": {
-        "track_name": [
-          "Une ba"
-        ]
-      }
-    });
+    this.data = uri.toString();
 
     this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
       this.answer = data[0].tracks;
     }, error => {
-      console.log("Oooops!");
+      console.log("Submit song failed");
     });
   }
+
 }

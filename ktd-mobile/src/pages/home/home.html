@@ -9,14 +9,16 @@
 <ion-content padding>
   Session created : {{posts}}
 
-  <div *ngIf="posts == false">
-    La session n'est pas active
+  <div *ngIf="posts">
+    La session est active
   </div>
-  <div *ngIf="posts == true">
+  <div *ngIf="!posts">
     La session n'est pas active
   </div>
 
   <br>
+  <button (click)="switchActive()">switch</button>
+
   <button (click)="goPreset()">Go to preset</button>
   <button (click)="goMenu()">Go to menu</button>
 </ion-content>

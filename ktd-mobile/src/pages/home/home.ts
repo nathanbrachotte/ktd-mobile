@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 //TEST GOING TO OTHER PAGE
 import { MenuPage } from '../menu/menu';
@@ -34,4 +34,16 @@ export class HomePage {
   goMenu() {
     this.navCtrl.setRoot(MenuPage);
   }
+
+  switchActive() {
+    if(this.posts == true)
+    {
+      this.posts = false;
+    }
+    else
+    {
+      this.posts = true;
+    }
+  }
+
 }

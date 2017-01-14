@@ -9,16 +9,19 @@
 
 
 <ion-content padding>
+
+  <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="search($event)">
+  </ion-searchbar>
+
   <ion-list>
-    <p *ngFor="let i of answer">
-      {{i.name}} , {{i.length}}
-    </p>
+    <button ion-item *ngFor="let a of answer" (click)="submit(a.name, a.uri)">
+      {{a.name}} , {{a.length}}, {{a.uri}}
+    </button>
   </ion-list>
 
-  <div style="background-color:powderblue;">:
-    {{answer}}
-  </div>
-
-  <button (click)="submit()">Submit</button>
+  try to add : {{test}}
 
 </ion-content>

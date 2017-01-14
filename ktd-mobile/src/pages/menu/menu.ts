@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 //TEST GOING TO OTHER PAGE
 import { UsersPage } from '../users/users';
@@ -21,42 +21,31 @@ export class MenuPage {
   answer: any;
   link : string;
   data : any;
+  songsSelected : any;
+  ex : any;
+
 
   constructor(public navCtrl: NavController, public http: Http)
   {
-
-
-    this.submit();
-    this.upvote();
+    //this.upvote();
+    //this.displaySongs();
   }
 
   goAdd() {
-    this.navCtrl.setRoot(AddPage);
+    this.navCtrl.push(AddPage);
   }
   goUsers() {
     this.navCtrl.push(UsersPage);
   }
 
 
-  submit() {
-
-    this.link = 'http://localhost:6680/killthedj/searches';
-    //this.data = JSON.stringify({username: this.data.username});
-    this.data = JSON.stringify({
-      "query": {
-        "track_name": [
-          "Une ba"
-        ]
-      }
-    });
-
-    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-      this.answer = data[0].tracks;
-    }, error => {
-      console.log("Oooops!");
+  displaySongs()
+  {
+    this.http.get('http://localhost:6680/killthedj/tracks').map(res => res.json()).subscribe(data => {
+      this.songsSelected = data.active;
+      console.log(this.songsSelected);
     });
   }
-
 
   upvote() {
 
