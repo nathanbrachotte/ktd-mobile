@@ -28,7 +28,6 @@ export class MenuPage {
   constructor(public navCtrl: NavController, public http: Http)
   {
     //this.upvote();
-    //this.displaySongs();
   }
 
   goAdd() {
@@ -41,10 +40,11 @@ export class MenuPage {
 
   displaySongs()
   {
-    this.http.get('http://localhost:6680/killthedj/tracks').map(res => res.json()).subscribe(data => {
-      this.songsSelected = data.active;
+    this.http.get('http://localhost:6680/killthedj/tracklist/tracks').map(res => res.json()).subscribe(data => {
+      this.songsSelected = data;
       console.log(this.songsSelected);
     });
+
   }
 
   upvote() {

@@ -64,7 +64,7 @@ export class AddPage {
       });
 
     this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-      this.answer = data[0].tracks;
+      console.log(data);
     }, error => {
       console.log("Submit song failed");
     });
