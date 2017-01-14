@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {FormBuilder, Validators} from "@angular/forms";
 import { NavController, NavParams } from 'ionic-angular';
 
 //TEST GOING TO OTHER PAGE
@@ -17,32 +17,73 @@ import 'rxjs/add/operator/map';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  posts: any;
+  active_session: any;
+  presetForm: any;
+  duration: number;
+  nbPeople: number;
+  data: any;
+  link: string;
+  answer: any;
 
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController, public http: Http, public _form:FormBuilder)
+  {
     this.http.get('http://localhost:6680/killthedj/session').map(res => res.json()).subscribe(data => {
-      this.posts = data.active;
-      console.log(this.posts);
+      this.active_session = data.active;
+      console.log(this.active_session);
     });
-  }
 
-  goPreset() {
-    this.navCtrl.push(PresetPage);
-  }
+    this.duration= 50;
+    this.nbPeople= 20;
+    this.presetForm = this._form.group({
+      "session_name":["My amazing party!!", Validators.required],
+    })
 
-  goMenu() {
-    this.navCtrl.setRoot(MenuPage);
   }
+  sendForm() {
+    console.log(this.presetForm.value.session_name);
+    this.link = 'http://localhost:6680/killthedj/session/users';
+    //this.data = JSON.stringify({username: this.data.username});
+    this.data = JSON.stringify(
+      {
+        "username": this.presetForm.value.session_name
+      });
 
-  switchActive() {
-    if(this.posts == true)
+    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+      this.answer = data;
+    }, error => {
+      console.log("Oooops!");
+    });
+    if(this.active_session)
     {
-      this.posts = false;
+      this.goMenu();
     }
     else
     {
-      this.posts = true;
+      this.goPreset();
+    }
+  }
+
+
+  goPreset()
+  {
+    this.navCtrl.push(PresetPage);
+  }
+
+  goMenu()
+  {
+    this.navCtrl.setRoot(MenuPage);
+  }
+
+  switchActive()
+  {
+    if(this.active_session)
+    {
+      this.active_session = false;
+    }
+    else
+    {
+      this.active_session = true;
     }
   }
 
