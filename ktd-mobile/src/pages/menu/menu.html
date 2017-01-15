@@ -9,9 +9,12 @@
 <ion-content padding>
 
   <ion-list>
-    <p *ngFor="let i of songs">
+    <ion-card>
+      Title, Artist, Length, Vote
+    </ion-card>
+    <button ion-item *ngFor="let i of songs" (click)="upvote()">
       {{i.title}} , {{i.artist}}, {{i.length}}, {{i.votes}}
-    </p>
+    </button>
   </ion-list>
 
   Bonjour {{username}}
@@ -20,5 +23,4 @@
   <button (click)="goAdd()">Go to Add</button>
   <button (click)="goUsers(username)">Go to Users</button>
 
-  <button (click)="displaySongs()">Display songs</button>
 </ion-content>

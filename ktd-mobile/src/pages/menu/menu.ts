@@ -16,10 +16,8 @@ import 'rxjs/add/operator/map';
 })
 export class MenuPage {
 
-  icons: string[];
   songs: Array<{title: any, artist: any, length: any, votes:any}>;
   items: Array<{title: string, note: string, icon: string}>;
-  answer: any;
   link : string;
   data : any;
   username : any;
@@ -81,21 +79,21 @@ export class MenuPage {
 
   upvote() {
 
-    this.link = 'http://localhost:6680/killthedj/searches';
+   // this.link = 'http://localhost:6680/killthedj/searches';
     //this.data = JSON.stringify({username: this.data.username});
-    this.data = JSON.stringify({
-      "query": {
-        "track_name": [
-          "Un"
-        ]
-      }
-    });
+   // this.data = JSON.stringify({
+    //  "query": {
+     //   "track_name": [
+      //    "Un"
+       // ]
+    //  }
+   // });
 
-    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-      this.answer = data[0].tracks;
-    }, error => {
-      console.log("Oooops!");
-    });
+   // this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+    //  this.answer = data[0].tracks;
+    //}, error => {
+     // console.log("Oooops!");
+    //});
   }
 
 }

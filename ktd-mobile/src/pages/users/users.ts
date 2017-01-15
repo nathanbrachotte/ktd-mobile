@@ -13,10 +13,8 @@ import 'rxjs/add/operator/map';
 })
 export class UsersPage {
 
-  selectedItem: any;
   username: any;
-  listname: any;
-  listnameArray: Array<{users:string}>;
+  listname: Array<{username:any}>;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
   i : any;
@@ -31,7 +29,7 @@ export class UsersPage {
       'american-football', 'boat', 'bluetooth', 'build'];
 
     this.items = [];
-    this.listnameArray = [];
+
     for(let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,
@@ -43,10 +41,22 @@ export class UsersPage {
 
   getListUser()
   {
-    this.http.get('http://localhost:6680/killthedj/session/users').map(res => res.json()).subscribe(data => {
-      this.listname = data;
-      console.log(data);
-    });
+    this.listname = [];
+    this.http.get('http://localhost:6680/killthedj/session/users')
+      .map(res => {
+        return res.json().map((item) => {
+          console.log(item.username);
+          this.listname.push(
+            {
+              username: item.username
+            });
+          return item;
+        })
+      })
+      .subscribe(data => {
+        console.log(data);
+      });
+
 
     //this.http.get('http://localhost:6680/killthedj/session/users').map(res => res.json()).subscribe(data => {
      // this.listname = data;
