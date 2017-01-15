@@ -45,13 +45,16 @@ export class UsersPage {
   {
     this.http.get('http://localhost:6680/killthedj/session/users').map(res => res.json()).subscribe(data => {
       this.listname = data;
-      console.log(this.listname);
-
+      console.log(data);
     });
 
-    for(let x of this.listname){
-      console.log(x);
-    }
+    //this.http.get('http://localhost:6680/killthedj/session/users').map(res => res.json()).subscribe(data => {
+     // this.listname = data;
+      //console.log(this.listname);
+      //console.log(this.listname["Nat"]);
+      //console.log(this.listname.user[0]);
+
+    //});
   }
 
 }
