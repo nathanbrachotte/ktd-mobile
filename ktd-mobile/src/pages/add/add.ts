@@ -68,6 +68,7 @@ export class AddPage {
     }, error => {
       console.log("Submit song failed");
     });
+
   }
 
 }
