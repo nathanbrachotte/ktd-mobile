@@ -17,7 +17,7 @@ import 'rxjs/add/operator/map';
 export class MenuPage {
 
   icons: string[];
-  songs: Array<{title: any, artist: any, length: any}>;
+  songs: Array<{title: any, artist: any, length: any, votes:any}>;
   items: Array<{title: string, note: string, icon: string}>;
   answer: any;
   link : string;
@@ -55,18 +55,19 @@ export class MenuPage {
         return res.json().map((item) => {
           //console.log(item.track[0].name);
           //console.log(item.track[0].artists[0].name);
-          //console.log(item.track[0].length);
+          console.log(item.votes);
           this.songs.push(
             {
               title: item.track[0].name,
               artist: item.track[0].artists[0].name,
-              length: item.track[0].length
+              length: item.track[0].length,
+              votes: item.votes
             });
           return item;
         })
       })
       .subscribe(data => {
-        //console.log(data);
+        console.log(data);
       });
 
 
