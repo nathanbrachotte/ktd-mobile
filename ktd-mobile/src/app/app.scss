@@ -14,3 +14,42 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.toolbar-background{
+  background: color($colors, primary);
+}
+
+.toolbar-title{
+  text-align: center;
+  color : color($colors, blanc);
+}
+
+ion-header{
+  border: color($colors, blanc);
+  border-style: solid;
+  border-width: 7px;
+}
+
+.content{
+  background: #2bf1fd;
+}
+
+form{
+  background: #2bf1fd;
+}
+button{
+  color : color($colors, important);
+  background : color($colors, blanc);
+}
+button:hover {
+  color : color($colors, blanc);
+  background : color($colors, primary);
+}
+.item-block{
+  background: #2bf1fd;
+}
+
+.bar-button-default-md
+{
+  color : color($colors, blanc)
+}

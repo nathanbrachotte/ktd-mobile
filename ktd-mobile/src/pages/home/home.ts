@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 
 //TEST GOING TO OTHER PAGE
 import { MenuPage } from '../menu/menu';
@@ -36,7 +36,7 @@ export class HomePage {
     this.duration= 50;
     this.nbPeople= 20;
     this.startForm = this._form.group({
-      "username":["Nathan", Validators.required],
+      "username":["Justpourrentrerdirect", Validators.required],
     })
 
   }
@@ -80,17 +80,4 @@ export class HomePage {
       name: name_user
     });
   }
-
-  switchActive()
-  {
-    if(this.active_session)
-    {
-      this.active_session = false;
-    }
-    else
-    {
-      this.active_session = true;
-    }
-  }
-
 }

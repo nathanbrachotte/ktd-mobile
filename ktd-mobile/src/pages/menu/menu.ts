@@ -32,7 +32,7 @@ export class MenuPage {
     this.displaySongs();
   }
 
-  ionViewWillEnter() { // THERE IT IS!!!
+  ionViewWillEnter() {
     this.displaySongs()
   }
 

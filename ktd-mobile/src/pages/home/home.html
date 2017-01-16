@@ -1,39 +1,44 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      HomePage
+      Welcome
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  Session created : {{active_session}}
 
-  <br>
-  <br>
-  <br>
+  <img src='img/KTD.gif' alt="logo ktd">
+
+  <div class="status">
+    <div *ngIf="!posts" color="important">
+     Join the party !
+    </div>
+    <div *ngIf="posts" color="important">
+      Create a session !
+    </div>
+  </div>
 
   <form [formGroup]="startForm" (ngSubmit)="startForm.valid && sendForm()" novalidate>
     <ion-item>
       <ion-label color="primary" floating>
-        Your name
+        Enter your name
       </ion-label>
       <ion-input formControlName="username"></ion-input>
     </ion-item>
-    <div *ngIf="posts">
-      <button ion-button type="submit">Go to menu</button>
-      La session est active
-    </div>
-    <div *ngIf="!posts">
-      <button ion-button type="submit">Go to preset</button>
-      La session n'est pas active
-    </div>
+
+    <ion-footer align-title="left" class="bar-assertive">
+      <div *ngIf="!posts">
+        <button ion-button type="submit">
+          Go !&nbsp;<ion-icon name="headset"></ion-icon>
+        </button>
+      </div>
+      <div *ngIf="posts">
+        <button ion-button color="form" type="submit">
+          Settings&nbsp;<ion-icon name="settings"></ion-icon>
+        </button>
+      </div>
+      <button (click)="goPreset(username)">preset</button>
+    </ion-footer>
   </form>
-
-  <br>
-  <br>
-  <br>
-
-  <button (click)="switchActive()">switch</button>
-
 </ion-content>

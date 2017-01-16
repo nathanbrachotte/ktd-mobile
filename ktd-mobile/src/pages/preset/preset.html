@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>PresetPage</ion-title>
+    <ion-title>Session settings</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,36 +9,38 @@
 
 <ion-content padding>
 
-  <form [formGroup]="presetForm" (ngSubmit)="presetForm.valid && sendForm()" novalidate>
+  <form class="preset" [formGroup]="presetForm" (ngSubmit)="presetForm.valid && sendForm()" novalidate>
     <ion-item>
-      <ion-label color="primary" floating>
+      <ion-label floating>
         Party Name
       </ion-label>
       <ion-input formControlName="session_name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label left="true" color="primary">
+      <ion-label left="true">
         Duration: {{ duration }} min
       </ion-label>
-      <ion-range min="20" max="1000" [(ngModel)]="duration" formControlName="duration" color="secondary">
+      <ion-range min="20" max="1000" [(ngModel)]="duration" formControlName="duration">
         <ion-label range-left>20</ion-label>
         <ion-label range-right>1000</ion-label>
       </ion-range>
     </ion-item>
 
     <ion-item>
-      <ion-label left="true" color="primary">
+      <ion-label left="true">
         Max people: {{ nbPeople }}
       </ion-label>
-      <ion-range value="20" min="2" max="1000" [(ngModel)]="nbPeople" formControlName="nb_people" color="secondary">
+      <ion-range value="20" min="2" max="1000" [(ngModel)]="nbPeople" formControlName="nb_people">
         <ion-label range-left>2</ion-label>
         <ion-label range-right>1000</ion-label>
       </ion-range>
     </ion-item>
 
-    <button ion-button type="submit" block>Launch Party!!
-    </button>
+    <ion-footer align-title="left" class="bar-assertive">
+      <button ion-button type="submit" block>Launch Party!!
+      </button>
+      <button (click)="goService()">Go to Service</button>
+    </ion-footer>
   </form>
-
-  <button (click)="goService()">Go to Service</button>
 </ion-content>
+
