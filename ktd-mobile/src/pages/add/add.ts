@@ -20,11 +20,14 @@ export class AddPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
   answer: any;
+  blank: any;
   link : string;
   data : any;
   test : any;
 
   constructor(public navCtrl: NavController,  public http: Http) {
+    this.blank = null;
+
   }
 
   search(ev: any) {
@@ -55,9 +58,7 @@ export class AddPage {
   submit(name:any, uri:any)
   {
     this.test = uri;
-
     this.link = 'http://localhost:6680/killthedj/tracklist/tracks';
-
     this.data = JSON.stringify(
       {
         "uri": uri
