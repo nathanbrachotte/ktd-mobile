@@ -14,19 +14,13 @@ import { MenuPage } from '../menu/menu';
 })
 export class ServicePage {
 
-  username : any;
-
   constructor(public navCtrl: NavController,public params:NavParams)
   {
-    this.username = params.get("name");
-    console.log(this.username);
 
   }
 
-  goMenu(name_user:any)
+  goMenu()
   {
-    this.navCtrl.setRoot(MenuPage,{
-      name: name_user
-    });
+    this.navCtrl.setRoot(MenuPage);
   }
 }

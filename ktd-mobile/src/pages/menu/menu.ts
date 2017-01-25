@@ -10,6 +10,9 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 //
 
+
+import { GlobalVariables } from '../../services/global_variables';
+
 @Component({
   selector: 'page-menu',
   templateUrl: 'menu.html'
@@ -20,17 +23,14 @@ export class MenuPage {
   items: Array<{title: string, note: string, icon: string}>;
   link : string;
   data : any;
-  username : any;
 
 
-  constructor(public navCtrl: NavController, public http: Http,public params:NavParams)
+  constructor(public navCtrl: NavController, public http: Http,public params:NavParams, public globalVariables: GlobalVariables)
   {
     //this.upvote();
+    console.log(globalVariables.username)
     this.songs = [];
-    this.username = params.get("name");
-    console.log(this.username);
     this.displaySongs();
-
   }
 
   ionViewWillEnter() {
@@ -41,16 +41,14 @@ export class MenuPage {
   goAdd() {
     this.navCtrl.push(AddPage);
   }
-  goUsers(name_user:any)
+  goUsers()
   {
-    this.navCtrl.push(UsersPage,{
-      name: name_user
-    });
+    this.navCtrl.push(UsersPage);
   }
 
   displaySongs()
   {
-    this.http.get('http://localhost:6680/killthedj/tracklist/tracks')
+    this.http.get(this.globalVariables.backendUrl+'/killthedj/tracklist/tracks')
       .map(res => {
         return res.json().map((item) => {
           //console.log(item.track[0].name);

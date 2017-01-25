@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, Validators} from "@angular/forms";
 import { ServicePage } from '../service/service';
+import { GlobalVariables } from '../../services/global_variables';
 
 //HTTP PART
 import { Http } from '@angular/http';
@@ -25,31 +26,27 @@ export class PresetPage {
   private data: any;
   private link: string;
   private answer: any;
-  private username: any;
 
-  constructor(public navCtrl: NavController, public _form:FormBuilder, public http: Http,public params:NavParams)
+  constructor(public navCtrl: NavController, public _form:FormBuilder, public http: Http,public params:NavParams, public globalVariables: GlobalVariables)
   {
-    this.username = params.get("name");
-    console.log(this.username);
     this.duration= 50;
     this.nbPeople= 20;
     this.presetForm = this._form.group({
       "session_name":["n", Validators.required],
       "duration":["", Validators.required],
       "nb_people":["", Validators.required],
-      "admin_username": [this.username, Validators.required],
+      "admin_username": [this.globalVariables.username, Validators.required],
     })
   }
 
   sendForm() {
-    console.log(this.presetForm.value);
-    this.link = 'http://localhost:6680/killthedj/session';
+    this.link = this.globalVariables.backendUrl+'/killthedj/session';
     //this.data = JSON.stringify({username: this.data.username});
     this.data = JSON.stringify(this.presetForm.value);
 
     this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
       this.answer = data;
-      this.goService(this.username);
+      this.goService();
     }, error => {
       console.log("Oooops!");
       location.reload()
@@ -57,10 +54,8 @@ export class PresetPage {
 
   }
 
-  goService(name_user:any)
+  goService()
   {
-    this.navCtrl.push(ServicePage,{
-      name: name_user
-    });
+    this.navCtrl.push(ServicePage);
   }
 }

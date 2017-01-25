@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
+import { GlobalVariables } from '../../services/global_variables';
 
 //HTTP PART
 import { Http } from '@angular/http';
@@ -19,7 +20,7 @@ export class UsersPage {
   items: Array<{title: string, note: string, icon: string}>;
   i : any;
 
-  constructor(public navCtrl: NavController,public params:NavParams, public http: Http)
+  constructor(public navCtrl: NavController,public params:NavParams, public http: Http, public globalVariables: GlobalVariables)
   {
     this.username = params.get("name");
     console.log(this.username);
@@ -42,7 +43,7 @@ export class UsersPage {
   getListUser()
   {
     this.listname = [];
-    this.http.get('http://localhost:6680/killthedj/session/users')
+    this.http.get(this.globalVariables.backendUrl+'/killthedj/session/users')
       .map(res => {
         return res.json().map((item) => {
           console.log(item.username);

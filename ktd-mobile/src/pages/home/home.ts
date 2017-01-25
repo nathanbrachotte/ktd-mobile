@@ -31,58 +31,59 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public http: Http, public _form:FormBuilder, public globalVariables: GlobalVariables)
   {
-    this.http.get('http://localhost:6680/killthedj/session').map(res => res.json()).subscribe(data => {
-      this.active_session = data.active;
-      console.log(this.active_session);
-    });
+
 
     this.duration= 50;
     this.nbPeople= 20;
     this.startForm = this._form.group({
       "username":["Justpourrentrerdirect", Validators.required],
+      "backendUrl":["http://localhost:6680", Validators.required],
     })
 
   }
   sendForm() {
-    console.log(this.startForm.value.username);
-    if(this.active_session)
-    {
-      //si la sessionnest active, on ajoute l'utilisateur
-      this.link = 'http://localhost:6680/killthedj/session/users';
-      //this.data = JSON.stringify({username: this.data.username});
-      this.data = JSON.stringify(
-        {
-          "username": this.startForm.value.username
+    this.globalVariables.username = this.startForm.value.username;
+    this.globalVariables.backendUrl = this.startForm.value.backendUrl;
+
+    this.http.get(this.globalVariables.backendUrl+'/killthedj/session').map(res => res.json()).subscribe(data => {
+
+      if(data.active)
+      {
+        //si la sessionnest active, on ajoute l'utilisateur
+        this.link = this.globalVariables.backendUrl+'/killthedj/session/users';
+        //this.data = JSON.stringify({username: this.data.username});
+        this.data = JSON.stringify(
+          {
+            "username": this.startForm.value.username
+          });
+
+        this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+          this.answer = data;
+          this.goMenu();
+        }, error => {
+          console.log("User creation failed!");
         });
 
-      this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-        this.answer = data;
-        this.globalVariables.username = this.startForm.value.username;
-        this.goMenu(this.startForm.value.username);
-      }, error => {
-        console.log("User creation failed!");
-      });
+      }
+      //Sinon il est ajouté en même temps que les settings de la session
+      else
+      {
+        this.goPreset();
+      }
 
-    }
-    //Sinon il est ajouté en même temps que les settings de la session
-    else
-    {
-      this.goPreset(this.startForm.value.username);
-    }
+
+    });
+
   }
 
 
-  goPreset(name_user:any)
+  goPreset()
   {
-    this.navCtrl.push(PresetPage,{
-      name: name_user
-    });
+    this.navCtrl.push(PresetPage)
   }
 
-  goMenu(name_user:any)
+  goMenu()
   {
-    this.navCtrl.setRoot(MenuPage,{
-      name: name_user
-    });
+    this.navCtrl.setRoot(MenuPage)
   }
 }

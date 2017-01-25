@@ -5,6 +5,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { GlobalVariables } from '../../services/global_variables';
+
 /*
   Generated class for the Add page.
 
@@ -25,7 +27,7 @@ export class AddPage {
   data : any;
   test : any;
 
-  constructor(public navCtrl: NavController,  public http: Http) {
+  constructor(public navCtrl: NavController,  public http: Http, public globalVariables: GlobalVariables) {
     this.blank = null;
 
   }
@@ -37,7 +39,7 @@ export class AddPage {
 
     if (val && val.trim() != '')
     {
-      this.link = 'http://localhost:6680/killthedj/searches';
+      this.link = this.globalVariables.backendUrl+'/killthedj/searches';
       //this.data = JSON.stringify({username: this.data.username});
       this.data = JSON.stringify({
         "query": {
