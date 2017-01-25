@@ -10,7 +10,9 @@ import { PresetPage } from '../preset/preset';
 //HTTP PART
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-//
+
+
+import { GlobalVariables } from '../../services/global_variables';
 
 @Component({
   selector: 'page-home',
@@ -24,9 +26,10 @@ export class HomePage {
   data: any;
   link: string;
   answer: any;
+  mopidy: any;
 
 
-  constructor(public navCtrl: NavController, public http: Http, public _form:FormBuilder)
+  constructor(public navCtrl: NavController, public http: Http, public _form:FormBuilder, public globalVariables: GlobalVariables)
   {
     this.http.get('http://localhost:6680/killthedj/session').map(res => res.json()).subscribe(data => {
       this.active_session = data.active;
@@ -54,10 +57,12 @@ export class HomePage {
 
       this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
         this.answer = data;
+        this.globalVariables.username = this.startForm.value.username;
+        this.goMenu(this.startForm.value.username);
       }, error => {
         console.log("User creation failed!");
       });
-      this.goMenu(this.startForm.value.username);
+
     }
     //Sinon il est ajouté en même temps que les settings de la session
     else

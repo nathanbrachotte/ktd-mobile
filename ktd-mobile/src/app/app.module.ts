@@ -8,6 +8,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { PresetPage } from '../pages/preset/preset';
 import { AddPage } from '../pages/add/add';
 import { ServicePage } from '../pages/service/service';
+import { GlobalVariables } from '../services/global_variables';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,6 @@ import { ServicePage } from '../pages/service/service';
     AddPage,
     ServicePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler, }, GlobalVariables]
 })
 export class AppModule {}

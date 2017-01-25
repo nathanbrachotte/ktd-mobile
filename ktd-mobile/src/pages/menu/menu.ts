@@ -30,6 +30,7 @@ export class MenuPage {
     this.username = params.get("name");
     console.log(this.username);
     this.displaySongs();
+
   }
 
   ionViewWillEnter() {
@@ -75,6 +76,9 @@ export class MenuPage {
     //});
 
   }
+
+
+
 
 
   upvote() {
