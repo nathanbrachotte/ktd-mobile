@@ -17,6 +17,7 @@ ion-scroll{
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  font-size: 0.5em;
 }
 
 ion-icon
@@ -25,7 +26,7 @@ ion-icon
 }
 
 .item-block{
-  padding: 1px;
+  padding: 0;
 }
 .item-inner{
   padding-right: 0;
@@ -45,12 +46,12 @@ padding: 0;
   text-align: center;
 }
 #title {
-  flex: 5 ;
+  flex: 8 ;
   overflow: hidden;
 }
 
 #artist {
-  flex: 3;
+  flex: 5;
 }
 
 #vote {
@@ -59,4 +60,13 @@ padding: 0;
 
 #icon {
   flex: 1;
+}
+
+.item-md.item-block .item-inner {
+  /* padding-right: 8px; */
+  border-bottom: 1px solid #dedede;
+}
+
+.label-md {
+  margin: 0;
 }

@@ -9,15 +9,9 @@
 <ion-content padding>
   <button ion-button block (click)="goUsers(username)">Users</button>
 
-  <ion-card>
-    <div class="conteneur">
-      <div class="element">Title</div>
-      <div class="element">Artist</div>
-      <div class="element">Length</div>
-      <div class="element">Vote</div>
-      <div class="element">Upvote</div>
-    </div>
-  </ion-card>
+  <div class="current_song">
+    Mickael Jackson - Blablabl
+  </div>
   <ion-scroll scrollY="true">
     <ion-list class="list-songs">
       <button ion-item *ngFor="let i of songs" (click)="upvote()">

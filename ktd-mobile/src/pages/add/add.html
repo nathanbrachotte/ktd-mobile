@@ -11,7 +11,7 @@
 <ion-content padding>
 
   <ion-searchbar
-    [(ngModel)]="myInput"
+    [(ngModel)]="blank"
     [showCancelButton]="shouldShowCancel"
     (ionInput)="search($event)">
   </ion-searchbar>
@@ -21,7 +21,4 @@
       {{a.name}} , {{a.length}}, {{a.uri}}
     </button>
   </ion-list>
-
-  try to add : {{test}}
-
 </ion-content>
