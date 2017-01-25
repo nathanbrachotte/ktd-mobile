@@ -19,10 +19,8 @@ import { GlobalVariables } from '../../services/global_variables';
 })
 export class MenuPage {
 
-  songs: Array<{title: any, artist: any, length: any, votes:any}>;
+  songs: Array<{title: string, artist: string, length: number, votes:number, uri:string}>;
   items: Array<{title: string, note: string, icon: string}>;
-  link : string;
-  data : any;
 
 
   constructor(public navCtrl: NavController, public http: Http,public params:NavParams, public globalVariables: GlobalVariables)
@@ -54,12 +52,14 @@ export class MenuPage {
           //console.log(item.track[0].name);
           //console.log(item.track[0].artists[0].name);
           console.log(item.votes);
+          this.songs = [];
           this.songs.push(
             {
               title: item.track[0].name,
               artist: item.track[0].artists[0].name,
               length: item.track[0].length,
-              votes: item.votes
+              votes: item.votes,
+              uri: item.track[0].uri,
             });
           return item;
         })
@@ -74,8 +74,20 @@ export class MenuPage {
 
 
 
-  upvote() {
+  upvote(uri : any) {
+    console.log(uri)
+    let link = this.globalVariables.backendUrl+'/killthedj/tracklist/votes';
+    let data = JSON.stringify(
+      {
+        "uri": uri
+      });
 
+    this.http.put(link, data).map(res => res.json()).subscribe(data => {
+      console.log(data);
+      this.displaySongs();
+    }, error => {
+      console.log("Vote impossible");
+    });
 
   }
 

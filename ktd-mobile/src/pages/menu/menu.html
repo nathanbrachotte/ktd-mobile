@@ -14,7 +14,7 @@
   </div>
   <ion-scroll scrollY="true">
     <ion-list class="list-songs">
-      <button ion-item *ngFor="let i of songs" (click)="upvote()">
+      <button ion-item *ngFor="let i of songs" (click)="upvote(i.uri)">
         <div class="conteneur">
           <div class="element" id="title" [attr.maxlength]="4">{{i.title}}</div>
           <div class="element" id="artist">{{i.artist}}</div>

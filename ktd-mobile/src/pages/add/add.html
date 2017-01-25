@@ -17,7 +17,7 @@
   </ion-searchbar>
 
   <ion-list>
-    <button ion-item *ngFor="let a of answer" (click)="submit(a.name, a.uri)">
+    <button ion-item *ngFor="let a of answer" (click)="submit(a.uri)">
       {{a.name}} , {{a.length}}, {{a.uri}}
     </button>
   </ion-list>

@@ -57,7 +57,7 @@ export class AddPage {
     }
   }
 
-  submit(name:any, uri:any)
+  submit(uri:any)
   {
     this.test = uri;
     this.link = 'http://localhost:6680/killthedj/tracklist/tracks';
