@@ -26,14 +26,18 @@ export class AddPage {
   link : string;
   data : any;
   test : any;
+  songs: Array<{title: string, artist: string, length: number, votes:number, uri:string}>;
+
 
   constructor(public navCtrl: NavController,  public http: Http, public globalVariables: GlobalVariables) {
     this.blank = null;
-
+    this.songs = [];
   }
 
   search(ev: any) {
     this.answer = null;
+    this.songs = [];
+
     // set val to the value of the searchbar
     let val = ev.target.value;
 
@@ -49,12 +53,34 @@ export class AddPage {
         }
       });
 
-      this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-        this.answer = data[0].tracks;
-        console.log(this.answer);
-      }, error => {
-        console.log("Search failed");
-      });
+      //this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+      //  this.answer = data[0].tracks;
+      //  console.log(this.answer[0].artists[0].name);
+      //}, error => {
+      //  console.log("Search failed");
+      //});
+
+      this.http.post(this.link, this.data)
+        .map(res => {
+          return res.json().map((item) => {
+            //console.log(item.track[0].name);
+            //console.log(item.track[0].artists[0].name);
+            console.log(item);
+            this.songs.push(
+              {
+                title: "bite",//item.track[0].name,
+                artist: "bite",//item.track[0].artists[0].name,
+                length: 11,//item.track[0].length,
+                votes: 11,//item.votes,
+                uri: "bite"//item.track[0].uri,
+              });
+            return item;
+          })
+        })
+        .subscribe(data => {
+          //console.log(data);
+        });
+
     }
   }
 
@@ -68,7 +94,7 @@ export class AddPage {
       });
 
     this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-      console.log(data);
+      //console.log(data);
     }, error => {
       console.log("Submit song failed");
     });

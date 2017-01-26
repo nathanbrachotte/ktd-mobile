@@ -78,7 +78,7 @@ export class MenuPage {
       console.log('Async operation has ended');
       this.displaySongs();
       refresher.complete();
-    }, 1000);
+    }, 300);
   }
 
   displaySongs()
@@ -89,7 +89,7 @@ export class MenuPage {
         return res.json().map((item) => {
           //console.log(item.track[0].name);
           //console.log(item.track[0].artists[0].name);
-          console.log(item.votes);
+          console.log(item);
           this.songs.push(
             {
               title: item.track[0].name,
