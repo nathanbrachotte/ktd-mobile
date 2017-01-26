@@ -25,19 +25,7 @@ export class UsersPage {
     this.username = params.get("name");
     console.log(this.username);
     this.getListUser();
-
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-      'american-football', 'boat', 'bluetooth', 'build'];
-
     this.items = [];
-
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
   }
 
   getListUser()
@@ -57,15 +45,16 @@ export class UsersPage {
       .subscribe(data => {
         console.log(data);
       });
-
-
-    //this.http.get('http://localhost:6680/killthedj/session/users').map(res => res.json()).subscribe(data => {
-     // this.listname = data;
-      //console.log(this.listname);
-      //console.log(this.listname["Nat"]);
-      //console.log(this.listname.user[0]);
-
-    //});
   }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.getListUser();
+      refresher.complete();
+    }, 1000);
+  }
+
 
 }

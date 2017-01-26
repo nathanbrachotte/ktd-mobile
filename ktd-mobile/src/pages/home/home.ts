@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import { NavController} from 'ionic-angular';
 
@@ -10,7 +10,6 @@ import { PresetPage } from '../preset/preset';
 //HTTP PART
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
 
 import { GlobalVariables } from '../../services/global_variables';
 
@@ -27,6 +26,7 @@ export class HomePage {
   link: string;
   answer: any;
   mopidy: any;
+  zone:any;
 
 
   constructor(public navCtrl: NavController, public http: Http, public _form:FormBuilder, public globalVariables: GlobalVariables)
@@ -38,8 +38,7 @@ export class HomePage {
     this.startForm = this._form.group({
       "username":["Justpourrentrerdirect", Validators.required],
       "backendUrl":["http://localhost:6680", Validators.required],
-    })
-
+    });
   }
   sendForm() {
     this.globalVariables.username = this.startForm.value.username;

@@ -7,6 +7,9 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <button ion-button block (click)="goUsers()">Users</button>
 
   <div class="current_song">
