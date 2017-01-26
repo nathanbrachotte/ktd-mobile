@@ -70,7 +70,7 @@ export class AddPage {
               this.songs.push(
                 {
                   title: entry.name,
-                  artist: entry.artists[0].name,
+                  artist: "art",//entry.artists[0].name,
                   length: entry.length,
                   votes: entry.votes,
                   uri: entry.uri,
