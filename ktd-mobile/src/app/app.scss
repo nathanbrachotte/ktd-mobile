@@ -31,11 +31,11 @@ ion-header{
 }
 
 .content{
-  background: #2bf1fd;
+  background: color($colors, secondary);
 }
 
 form{
-  background: #2bf1fd;
+  background: color($colors, secondary);
 }
 button{
   color : color($colors, important);
@@ -46,7 +46,7 @@ button:hover {
   background : color($colors, primary);
 }
 .item-block{
-  background: #2bf1fd;
+  background: color($colors, secondary);
 }
 
 .bar-button-default-md

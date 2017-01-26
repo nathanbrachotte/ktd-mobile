@@ -19,7 +19,7 @@
   <ion-list *ngFor="let i of songs" >
     <div class="conteneur">
       <div class="element" id="title" [attr.maxlength]="4">{{i.title}}</div>
-    <!--  <div class="element" id="artist">{{i.artists}}</div>-->
+      <div class="element" id="artist">{{i.artist}}</div>
       <!--<div class="element">{{i.length}}</div>-->
       <button class="element" id="button" ion-button icon-only (click)="submit(i.uri)">
         <ion-icon name="add-circle"></ion-icon>

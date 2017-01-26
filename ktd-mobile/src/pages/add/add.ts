@@ -65,15 +65,19 @@ export class AddPage {
           return res.json().map((item) => {
             //console.log(item.track[0].name);
             //console.log(item.track[0].artists[0].name);
-            console.log(item);
-            this.songs.push(
-              {
-                title: "bite",//item.track[0].name,
-                artist: "bite",//item.track[0].artists[0].name,
-                length: 11,//item.track[0].length,
-                votes: 11,//item.votes,
-                uri: "bite"//item.track[0].uri,
-              });
+            //console.log(item);
+            for (let entry of item.tracks) {
+              this.songs.push(
+                {
+                  title: entry.name,
+                  artist: entry.artists[0].name,
+                  length: entry.length,
+                  votes: entry.votes,
+                  uri: entry.uri,
+                });
+            }
+
+
             return item;
           })
         })
