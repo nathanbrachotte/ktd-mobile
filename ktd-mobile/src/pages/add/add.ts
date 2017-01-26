@@ -53,13 +53,6 @@ export class AddPage {
         }
       });
 
-      //this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
-      //  this.answer = data[0].tracks;
-      //  console.log(this.answer[0].artists[0].name);
-      //}, error => {
-      //  console.log("Search failed");
-      //});
-
       this.http.post(this.link, this.data)
         .map(res => {
           return res.json().map((item) => {
@@ -67,10 +60,11 @@ export class AddPage {
             //console.log(item.track[0].artists[0].name);
             //console.log(item);
             for (let entry of item.tracks) {
+              console.log(entry.artists[0].name);
               this.songs.push(
                 {
                   title: entry.name,
-                  artist: "art",//entry.artists[0].name,
+                  artist: entry.artists[0].name,
                   length: entry.length,
                   votes: entry.votes,
                   uri: entry.uri,
