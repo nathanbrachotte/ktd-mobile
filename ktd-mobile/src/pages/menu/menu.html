@@ -16,16 +16,16 @@
     Mickael Jackson - Blablabl
   </div>
   <ion-scroll scrollY="true">
-    <ion-list class="list-songs">
-      <button ion-item *ngFor="let i of songs" (click)="upvote(i.uri)">
+    <ion-list *ngFor="let i of songs" class="list-songs">
         <div class="conteneur">
           <div class="element" id="title" [attr.maxlength]="4">{{i.title}}</div>
           <div class="element" id="artist">{{i.artist}}</div>
           <!--<div class="element">{{i.length}}</div>-->
           <div class="element" id="vote">{{i.votes}}</div>
-          <ion-icon name="arrow-round-up" id="icon"></ion-icon>
+          <button class="element" id="button" ion-button icon-only (click)="upvote(i.uri)">
+            <ion-icon name="arrow-round-up"></ion-icon>
+          </button>
         </div>
-      </button>
     </ion-list>
   </ion-scroll>
 </ion-content>

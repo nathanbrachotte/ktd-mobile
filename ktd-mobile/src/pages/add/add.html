@@ -16,9 +16,14 @@
     (ionInput)="search($event)">
   </ion-searchbar>
 
-  <ion-list>
-    <button ion-item *ngFor="let a of answer" (click)="submit(a.uri)">
-      {{a.name}} , {{a.length}}, {{a.uri}}
-    </button>
+  <ion-list *ngFor="let i of answer" >
+    <div class="conteneur">
+      <div class="element" id="title" [attr.maxlength]="4">{{i.name}}</div>
+      <div class="element" id="artist">{{i.artists[0].name}}</div>
+      <!--<div class="element">{{i.length}}</div>-->
+      <button class="element" id="button" ion-button icon-only (click)="submit(i.uri)">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </div>
   </ion-list>
 </ion-content>

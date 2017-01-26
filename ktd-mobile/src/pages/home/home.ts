@@ -44,7 +44,7 @@ export class HomePage {
     this.globalVariables.username = this.startForm.value.username;
     this.globalVariables.backendUrl = this.startForm.value.backendUrl;
 
-    this.http.get(this.globalVariables.backendUrl+'/killthedj/session').map(res => res.json()).subscribe(data => {
+    this.http.get(this.globalVariables.backendUrl+'/killthedj/session',).map(res => res.json()).subscribe(data => {
 
       if(data.active)
       {
