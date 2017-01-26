@@ -61,6 +61,7 @@ export class AddPage {
             //console.log(item);
             for (let entry of item.tracks) {
               console.log(entry.artists[0].name);
+
               this.songs.push(
                 {
                   title: entry.name,
