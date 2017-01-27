@@ -8,7 +8,7 @@ import { PresetPage } from '../preset/preset';
 
 //
 //HTTP PART
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { GlobalVariables } from '../../services/global_variables';
@@ -56,7 +56,7 @@ export class HomePage {
             "username": this.startForm.value.username
           });
 
-        this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+        this.http.post(this.link, this.data,).map(res => res.json()).subscribe(data => {
           this.answer = data;
           this.goMenu();
         }, error => {

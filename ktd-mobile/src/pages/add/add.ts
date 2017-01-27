@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 //HTTP PART
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { GlobalVariables } from '../../services/global_variables';
@@ -27,6 +27,7 @@ export class AddPage {
   data : any;
   test : any;
   songs: Array<{title: string, artist: string, length: number, votes:number, uri:string}>;
+  headers:any;
 
 
   constructor(public navCtrl: NavController,  public http: Http, public globalVariables: GlobalVariables) {
@@ -53,7 +54,16 @@ export class AddPage {
         }
       });
 
-      this.http.post(this.link, this.data)
+      this.headers = new Headers();
+      this.headers.append('username', 'unuser');
+
+      //{
+      //  headers: this.headers
+      //}
+
+      this.http.post(this.link, this.data,{
+       headers: this.headers
+      })
         .map(res => {
           return res.json().map((item) => {
             //console.log(item.track[0].name);
