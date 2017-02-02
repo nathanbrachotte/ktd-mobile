@@ -4,4 +4,6 @@ import { Injectable } from '@angular/core';
 export class GlobalVariables {
   public username:string;
   public backendUrl:string;
+  public cookie: any;
+  public header: any;
 }

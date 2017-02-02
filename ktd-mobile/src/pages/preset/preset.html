@@ -18,11 +18,21 @@
     </ion-item>
     <ion-item>
       <ion-label left="true">
-        Duration: {{ duration }} min
+        Duration: {{ session_length }} min
       </ion-label>
-      <ion-range min="20" max="1000" [(ngModel)]="duration" formControlName="duration">
+      <ion-range min="20" max="1000" [(ngModel)]="session_length" formControlName="session_length">
         <ion-label range-left>20</ion-label>
         <ion-label range-right>1000</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label left="true">
+        Max votes: {{ max_votes }}
+      </ion-label>
+      <ion-range min="1" max="20" [(ngModel)]="max_votes" formControlName="max_votes">
+        <ion-label range-left>1</ion-label>
+        <ion-label range-right>20</ion-label>
       </ion-range>
     </ion-item>
 

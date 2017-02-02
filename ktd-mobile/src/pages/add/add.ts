@@ -23,10 +23,8 @@ export class AddPage {
   items: Array<{title: string, note: string, icon: string}>;
   answer: any;
   blank: any;
-  link : string;
-  data : any;
-  test : any;
-  songs: Array<{title: string, artist: string, length: number, votes:number, uri:string}>;
+  data: any;
+  songs: Array<{title: string, artist: string, length: number, uri:string}>;
   headers:any;
 
 
@@ -44,7 +42,7 @@ export class AddPage {
 
     if (val && val.trim() != '')
     {
-      this.link = this.globalVariables.backendUrl+'/killthedj/searches';
+
       //this.data = JSON.stringify({username: this.data.username});
       this.data = JSON.stringify({
         "query": {
@@ -54,38 +52,27 @@ export class AddPage {
         }
       });
 
-      this.headers = new Headers();
-      this.headers.append('username', 'unuser');
 
       //{
       //  headers: this.headers
       //}
 
-      this.http.post(this.link, this.data,{
-       headers: this.headers
-      })
+      this.http.post(this.globalVariables.backendUrl+'/killthedj/searches', this.data)
         .map(res => {
-          return res.json().map((item) => {
-            //console.log(item.track[0].name);
-            //console.log(item.track[0].artists[0].name);
-            //console.log(item);
-            for (let entry of item.tracks) {
-              console.log(entry.artists[0].name);
-
-              this.songs.push(
-                {
-                  title: entry.name,
-                  artist: entry.artists[0].name,
-                  length: entry.length,
-                  votes: entry.votes,
-                  uri: entry.uri,
-                });
-            }
-
-
-            return item;
-          })
+        return res.json().map((item) => {
+          //console.log(item.track[0].name);
+          //console.log(item.track[0].artists[0].name);
+          console.log(item);
+          this.songs.push(
+            {
+              title: item.name,
+              artist: item.artists[0].name,
+              length: item.length,
+              uri: item.uri,
+            });
+          return item;
         })
+      })
         .subscribe(data => {
           //console.log(data);
         });
@@ -95,14 +82,11 @@ export class AddPage {
 
   submit(uri:any)
   {
-    this.test = uri;
-    this.link = 'http://localhost:6680/killthedj/tracklist/tracks';
     this.data = JSON.stringify(
       {
         "uri": uri
       });
-
-    this.http.post(this.link, this.data).map(res => res.json()).subscribe(data => {
+    this.http.post(this.globalVariables.backendUrl+'/killthedj/tracklist/tracks', this.data,{headers: this.globalVariables.header}).map(res => res.json()).subscribe(data => {
       //console.log(data);
     }, error => {
       console.log("Submit song failed");
