@@ -32,7 +32,7 @@ export class PresetPage {
   {
     this.session_length= 50;
     this.nbPeople= 20
-    this.max_votes= 10;
+    this.max_votes= 5;
     this.presetForm = this._form.group({
       "session_name":["n", Validators.required],
       "session_length":["", Validators.required],

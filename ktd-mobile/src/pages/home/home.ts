@@ -47,6 +47,7 @@ export class HomePage {
     this.http.get(this.globalVariables.backendUrl + '/killthedj/session',).map(res => res.json()).subscribe(data => {
 
       if (data.active) {
+        console.log(this.globalVariables.cookie);
         if (!this.globalVariables.cookie) {
           //si la sessionnest active, on ajoute l'utilisateur
           this.link = this.globalVariables.backendUrl + '/killthedj/session/users';

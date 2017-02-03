@@ -21,6 +21,8 @@ export class MenuPage {
 
   songs: Array<{title: string, artist: string, length: number, votes: number, uri: string}>;
   items: Array<{title: string, note: string, icon: string}>;
+  votes: number;
+  current_song: any;
 
 
   constructor(public navCtrl: NavController, public http: Http, public globalVariables: GlobalVariables, private _ngZone: NgZone) {
@@ -102,22 +104,44 @@ export class MenuPage {
         console.log(data);
       });
 
+    this.http.get(this.globalVariables.backendUrl + '/killthedj/tracklist/votes', {headers: this.globalVariables.header})
+      .map(res => {
+        return res.json()})
+      .subscribe(data => {
+        this.votes = data;
+      },  error => {
+        console.log("Impossible to get the votes");
+      });
+
+    this.http.get(this.globalVariables.backendUrl + '/killthedj/tracklist/playback/', {headers: this.globalVariables.header})
+      .map(res => {
+        return res.json()})
+      .subscribe(data => {
+        this.current_song = data;
+      },  error => {
+        console.log("Impossible to get the votes");
+      });
+
   }
 
 
+
   upvote(uri: any) {
-    console.log(uri)
-    let link = this.globalVariables.backendUrl + '/killthedj/tracklist/votes';
-    let data = JSON.stringify(
-      {
-        "uri": uri
+    if(this.votes > 0){
+      console.log(uri)
+      let link = this.globalVariables.backendUrl + '/killthedj/tracklist/votes';
+      let data = JSON.stringify(
+        {
+          "uri": uri
+        });
+      this.http.put(link, data, {headers: this.globalVariables.header}).map(res => res.json()).subscribe(data => {
+        console.log(data);
+        this.displaySongs();
+      }, error => {
+        console.log("Vote impossible");
       });
-    this.http.put(link, data, {headers: this.globalVariables.header}).map(res => res.json()).subscribe(data => {
-      console.log(data);
-      this.displaySongs();
-    }, error => {
-      console.log("Vote impossible");
-    });
+    }
+
 
   }
 

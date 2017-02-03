@@ -24,7 +24,7 @@ export class AddPage {
   answer: any;
   blank: any;
   data: any;
-  songs: Array<{title: string, artist: string, length: number, uri:string}>;
+  songs: Array<{title: string, artist: string, length: number, uri:string, present: boolean}>;
   headers:any;
 
 
@@ -69,6 +69,7 @@ export class AddPage {
               artist: item.artists[0].name,
               length: item.length,
               uri: item.uri,
+              present: item.present
             });
           return item;
         })
