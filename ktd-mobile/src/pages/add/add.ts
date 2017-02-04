@@ -55,7 +55,7 @@ export class AddPage {
       });
 
       this.headers = new Headers();
-      this.headers.append('username', 'unuser');
+      this.headers.append('Username', 'unuser');
 
       //{
       //  headers: this.headers

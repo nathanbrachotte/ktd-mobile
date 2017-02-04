@@ -21,6 +21,7 @@ export class MenuPage {
 
   songs: Array<{title: string, artist: string, length: number, votes:number, uri:string}>;
   items: Array<{title: string, note: string, icon: string}>;
+  currentSong: any;
 
 
   constructor(public navCtrl: NavController, public http: Http,public params:NavParams, public globalVariables: GlobalVariables,private _ngZone: NgZone)
@@ -92,11 +93,11 @@ export class MenuPage {
           console.log(item);
           this.songs.push(
             {
-              title: item.track[0].name,
-              artist: item.track[0].artists[0].name,
-              length: item.track[0].length,
+              title: item.track.name,
+              artist: item.track.artists[0].name,
+              length: item.track.length,
               votes: item.votes,
-              uri: item.track[0].uri,
+              uri: item.track.uri,
             });
           return item;
         })
@@ -104,6 +105,18 @@ export class MenuPage {
       .subscribe(data => {
         console.log(data);
       });
+
+    this.http.get(this.globalVariables.backendUrl+'/tracklist/playback/current')
+      .map(res => res.json())
+      .subscribe(data =>
+      {
+        this.currentSong = data.uri;
+        console.log(this.currentSong.track.name);
+      }, error => {
+      console.log("Get the current song request failed");
+    });
+
+
 
   }
 
