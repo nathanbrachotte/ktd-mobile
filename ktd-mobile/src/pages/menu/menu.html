@@ -12,8 +12,11 @@
   </ion-refresher>
   <button ion-button block (click)="goUsers()">Users</button>
 
+  <div class="current_song" *ngIf="current_song">
+    {{current_song.artists[0].name}} - {{current_song.name}}
+  </div>
   <div class="current_song">
-    Mickael Jackson - Blablabl
+    Remaining votes: {{votes}}
   </div>
   <ion-scroll scrollY="true">
     <ion-list *ngFor="let i of songs" class="list-songs">
@@ -22,7 +25,7 @@
           <div class="element" id="artist">{{i.artist}}</div>
           <!--<div class="element">{{i.length}}</div>-->
           <div class="element" id="vote">{{i.votes}}</div>
-          <button class="element" id="button" ion-button icon-only (click)="upvote(i.uri)">
+          <button *ngIf="votes > 0" class="element" id="button" ion-button icon-only (click)="upvote(i.uri)">
             <ion-icon name="arrow-round-up"></ion-icon>
           </button>
         </div>
