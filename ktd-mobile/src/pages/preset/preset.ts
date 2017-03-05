@@ -7,6 +7,7 @@ import { GlobalVariables } from '../../services/global_variables';
 //HTTP PART
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {MenuPage} from "../menu/menu";
 
 /*
   Generated class for the Preset page.
@@ -53,7 +54,9 @@ export class PresetPage {
       let headers: Headers = new Headers();
       headers.append('X-KTD-Cookie', this.globalVariables.cookie);
       this.globalVariables.header = headers;
-      this.goService();
+      localStorage.setItem("cookie", this.answer.admin_user.cookie);
+      localStorage.setItem("username", this.globalVariables.username);
+      this.goMenu();
     }, error => {
       console.log("Oooops!");
       //location.reload()
@@ -61,8 +64,8 @@ export class PresetPage {
 
   }
 
-  goService()
+  goMenu()
   {
-    this.navCtrl.push(ServicePage);
+    this.navCtrl.push(MenuPage);
   }
 }

@@ -31,7 +31,7 @@ export class UsersPage {
   getListUser()
   {
     this.listname = [];
-    this.http.get(this.globalVariables.backendUrl+'/killthedj/session/users')
+    this.http.get(this.globalVariables.backendUrl+'/killthedj/session/users', {headers: this.globalVariables.header})
       .map(res => {
         return res.json().map((item) => {
           console.log(item.username);
