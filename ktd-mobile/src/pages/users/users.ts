@@ -15,7 +15,7 @@ import 'rxjs/add/operator/map';
 export class UsersPage {
 
   username: any;
-  listname: Array<{username:any}>;
+  listname: Array<{username:any, points:number}>;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
   i : any;
@@ -37,7 +37,8 @@ export class UsersPage {
           console.log(item.username);
           this.listname.push(
             {
-              username: item.username
+              username: item.username,
+              points: item.points
             });
           return item;
         })
