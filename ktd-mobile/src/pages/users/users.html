@@ -12,10 +12,14 @@
   </ion-refresher>
   <ion-list>
     <ion-card *ngFor="let i of listname">
-      {{i.username}}  {{i.points}}
+      {{i.username}}  {{i.points}} {{i.removable}}
+      <button class="element" id="button" ion-button (click)="remove(i)" *ngIf="(i.removable)">
+        -
+      </button>
     </ion-card>
   </ion-list>
 
+  <div>POINT RULES : SONG_PROPOSED =3, SONG_PASSED = 20, GET_VOTE = 2, DO_VOTE = 1</div>
 
 </ion-content>
 

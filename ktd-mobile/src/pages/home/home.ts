@@ -103,6 +103,7 @@ export class HomePage {
       this.globalVariables.header = headers;
       localStorage.setItem("cookie", this.answer.cookie);
       localStorage.setItem("username", this.startForm.value.username);
+      localStorage.setItem("is_admin", "false");
       this.goMenu()
     }, error => {
       let alert = this.alertCtrl.create({

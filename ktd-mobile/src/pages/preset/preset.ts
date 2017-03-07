@@ -56,6 +56,7 @@ export class PresetPage {
       this.globalVariables.header = headers;
       localStorage.setItem("cookie", this.answer.admin_user.cookie);
       localStorage.setItem("username", this.globalVariables.username);
+      localStorage.setItem("is_admin", "true");
       this.goMenu();
     }, error => {
       console.log("Oooops!");
