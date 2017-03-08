@@ -10,13 +10,17 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
   <button ion-button block (click)="goUsers()">Users</button>
 
-  <div class="current_song" *ngIf="current_song">
-    {{current_song.artists[0].name}} - {{current_song.name}}
-  </div>
-  <div class="current_song">
-    Remaining votes: {{votes}}
+  <div class="nowplaying">
+  Now playing:
+    <div class="current_song" *ngIf="current_song">
+      {{current_song.artists[0].name}} - {{current_song.name}}
+    </div>
+    <div class="current_song">
+      Remaining votes: {{votes}}
+    </div>
   </div>
   <ion-scroll scrollY="true">
     <ion-list *ngFor="let i of songs" class="list-songs">
@@ -33,5 +37,5 @@
   </ion-scroll>
 </ion-content>
 <ion-footer align-title="left" class="bar-assertive">
-  <button ion-button block (click)="goAdd()" class="boutonAdd"><ion-icon name="add"></ion-icon></button>
+  <button ion-button block (click)="goAdd()" class="boutonAdd">Add a song<ion-icon name="add"></ion-icon></button>
 </ion-footer>

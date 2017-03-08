@@ -12,17 +12,21 @@ ion-scroll{
   color: color($colors, primary);
 }
 
+.nowplaying{
+  width:fit-content;
+  outline: color($colors, primary) solid;
+}
 .conteneur
 {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  font-size: 0.5em;
+  font-size: 1em;
 }
 
 ion-icon
 {
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .item-block{
@@ -38,7 +42,7 @@ padding: 0;
 
 .list-songs
 {
-  font-size: 0.5em;
+  font-size: 1em;
 }
 .element{
   width: 100%;

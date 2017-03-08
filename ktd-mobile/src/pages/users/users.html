@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      UsersPage
+      Users Page
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,10 +11,10 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-card *ngFor="let i of listname">
+    <ion-card *ngFor="let i of listname" class="listname">
       {{i.username}}  {{i.points}} {{i.removable}}
       <button class="element" id="button" ion-button (click)="remove(i)" *ngIf="(i.removable)">
-        -
+        <ion-icon name="remove"></ion-icon>
       </button>
     </ion-card>
   </ion-list>
@@ -22,4 +22,3 @@
   <div>POINT RULES : SONG_PROPOSED =3, SONG_PASSED = 20, GET_VOTE = 2, DO_VOTE = 1</div>
 
 </ion-content>
-
