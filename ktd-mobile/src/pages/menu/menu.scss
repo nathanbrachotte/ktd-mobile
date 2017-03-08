@@ -24,6 +24,9 @@ ion-scroll{
   font-size: 1em;
 }
 
+.current_song{
+  color:red;
+}
 ion-icon
 {
   font-size: 1em;
@@ -51,7 +54,6 @@ padding: 0;
 }
 #title {
   flex: 8 ;
-  overflow: hidden;
 }
 
 #artist {
