@@ -69,6 +69,7 @@ export class UsersPage {
     this.http.post(this.globalVariables.backendUrl + '/killthedj/delUser', this.data, {headers: this.globalVariables.header}).map(res => res.json()).subscribe(data => {
       this.getListUser()
     }, error => {
+      location.reload();
       console.log("Oooops!");
     });
   }

@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 
 
 import {GlobalVariables} from '../../services/global_variables';
+import {errorHandler} from "@angular/platform-browser/src/browser";
 
 @Component({
   selector: 'page-menu',
@@ -102,6 +103,8 @@ export class MenuPage {
       })
       .subscribe(data => {
         console.log(data);
+      }, error => {
+        location.reload();
       });
 
     this.http.get(this.globalVariables.backendUrl + '/killthedj/tracklist/votes', {headers: this.globalVariables.header})
@@ -110,6 +113,7 @@ export class MenuPage {
       .subscribe(data => {
         this.votes = data;
       },  error => {
+        location.reload()
         console.log("Impossible to get the votes");
       });
 
@@ -119,6 +123,7 @@ export class MenuPage {
       .subscribe(data => {
         this.current_song = data;
       },  error => {
+        location.reload()
         console.log("Impossible to get the votes");
       });
 
@@ -138,6 +143,7 @@ export class MenuPage {
         console.log(data);
         this.displaySongs();
       }, error => {
+        location.reload()
         console.log("Vote impossible");
       });
     }

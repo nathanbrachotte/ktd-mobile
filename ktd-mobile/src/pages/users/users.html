@@ -12,7 +12,7 @@
   </ion-refresher>
   <ion-list>
     <ion-card *ngFor="let i of listname" class="listname">
-      {{i.username}}  {{i.points}} {{i.removable}}
+      {{i.username}}    {{i.points}} points
       <button class="element" id="button" ion-button (click)="remove(i)" *ngIf="(i.removable)">
         <ion-icon name="remove"></ion-icon>
       </button>

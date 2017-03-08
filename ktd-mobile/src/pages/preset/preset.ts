@@ -60,7 +60,7 @@ export class PresetPage {
       this.goMenu();
     }, error => {
       console.log("Oooops!");
-      //location.reload()
+      location.reload()
     });
 
   }

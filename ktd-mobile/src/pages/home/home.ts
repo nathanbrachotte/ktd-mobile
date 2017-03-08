@@ -77,7 +77,7 @@ export class HomePage {
     }, error => {
       let alert = this.alertCtrl.create({
         title: 'Error server',
-        subTitle: 'Server unreachable',
+        subTitle: 'No server running on this address'+this.globalVariables.backendUrl,
         buttons: ['Dismiss']
       });
       alert.present();
